@@ -1,27 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	*int_to_tab(int n)
-{
-	int	*tab;
-	int	c;
-
-	c = 0;
-	tab = malloc(sizeof(int));
-	if (!tab)
-		return (NULL);
-	while (n * 10 / 10)
-	{
-		c++;
-		tab = realloc(tab, sizeof(int) * c);
-		if (!tab)
-			return (NULL);
-		tab[c - 1] = n % 10;
-		n /= 10;
-	}
-	return (tab);
-}
-
 int	int_len(int n)
 {
 	int	c;
@@ -43,6 +22,27 @@ int	*reverse_tab(int *tab, int len_tab)
 		tab[j] = temp;
 	}
 	return (tab);
+}
+
+int	*int_to_tab(int n)
+{
+	int	*tab;
+	int	c;
+
+	c = 0;
+	tab = malloc(sizeof(int));
+	if (!tab)
+		return (NULL);
+	while (n * 10 / 10)
+	{
+		c++;
+		tab = realloc(tab, sizeof(int) * c);
+		if (!tab)
+			return (NULL);
+		tab[c - 1] = n % 10;
+		n /= 10;
+	}
+	return (reverse_tab(tab, c));
 }
 
 int	main(int argc, char **argv)
